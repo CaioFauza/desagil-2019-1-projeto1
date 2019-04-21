@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/text_0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preciso de ajuda"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:textSize="15sp" />
+
+    <TextView android:id="@+id/text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:text="Estou com fome"/>
+
+    <TextView android:id="@+id/text_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        android:text="Estou com sede"/>
+
+
+    <TextView android:id="@+id/text_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        android:text="Quero dormir"/>
+
+
+    <TextView android:id="@+id/text_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        android:text="Chame meu irmão"/>
+
+    <TextView android:id="@+id/text_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        android:text="Estou com dores"/>
+
+    <TextView android:id="@+id/text_6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        android:text="Vamos conversar?"/>
+
+
+</LinearLayout>
