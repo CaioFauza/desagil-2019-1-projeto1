@@ -98,15 +98,15 @@
         android:textSize="15sp"
         />
 
-    <TextView
-    android:id="@+id/text_list9"
-    android:layout_height="wrap_content"
-    android:layout_columnSpan="2"
-    android:layout_columnWeight="1"
-    android:gravity="center"
-    android:layout_margin="4dp"
-    android:textSize="15sp"
-    />
+        <TextView
+        android:id="@+id/text_list9"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
 
 
     <Button
