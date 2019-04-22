@@ -1,6 +1,11 @@
 package br.pro.hashi.ensino.desagil.projeto1;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,14 +15,22 @@ import java.util.LinkedList;
 
 public class SelecaoMensagem extends AppCompatActivity {
     private int at = 0;
+    public static String name;
     private LinkedList<String> list = new LinkedList<>();
     private LinkedList<TextView> views = new LinkedList<>();
+    private static final int REQUEST_SEND_SMS = 0;
 
     private void startMainActivity() {
 
         Intent intent = new Intent(this, MainActivity.class);
 
 
+        startActivity(intent);
+    }
+
+    private void startSMSActivity() {
+
+        Intent intent = new Intent(this, SMSActivity.class);
         startActivity(intent);
     }
 
@@ -106,7 +119,30 @@ public class SelecaoMensagem extends AppCompatActivity {
             startMainActivity();
         });
 
+
+        buttonChoice.setOnClickListener((view) -> {
+            setName();
+
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+
+                startSMSActivity();
+            } else {
+
+                String[] permissions = new String[]{
+                        Manifest.permission.SEND_SMS,
+                };
+
+                ActivityCompat.requestPermissions(this, permissions, REQUEST_SEND_SMS);
+            }
+
+        });
+
     }
+
+    public void setName() { this.name = list.get(at); }
+
+    public String getName() { return name; }
+
     private void updateList(){
         if(list.size() - at > views.size()){
             for (int i = 0; i < views.size(); i++){
@@ -121,5 +157,15 @@ public class SelecaoMensagem extends AppCompatActivity {
             }
         }
 
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == REQUEST_SEND_SMS && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            System.out.println("enenene");
+            startSMSActivity();
+
+        }
     }
 }
