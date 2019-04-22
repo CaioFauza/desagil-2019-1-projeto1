@@ -164,7 +164,6 @@ public class SelecaoMensagem extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
         if (requestCode == REQUEST_SEND_SMS && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            System.out.println("enenene");
             startSMSActivity();
 
         }

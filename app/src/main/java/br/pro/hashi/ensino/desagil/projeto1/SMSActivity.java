@@ -22,7 +22,13 @@ public class SMSActivity extends AppCompatActivity {
 
         startActivity(intent);
     }
+    private void startMainActivity() {
 
+        Intent intent = new Intent(this, MainActivity.class);
+
+
+        startActivity(intent);
+    }
     private void showToast(String text) {
 
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
@@ -63,6 +69,8 @@ public class SMSActivity extends AppCompatActivity {
             manager.sendTextMessage(phone, null, name.getName(), null, null);
             textExample.setText("");
             textPhone.setText("");
+            startMainActivity();
+
         });
     }
 }
