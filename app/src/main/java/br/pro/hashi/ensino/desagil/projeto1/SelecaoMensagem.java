@@ -39,27 +39,26 @@ public class SelecaoMensagem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecao_mensagem);
-        list.add("oi");
-        list.add("caca");
-        list.add("banana");
-        list.add("plane");
-        list.add("dado");
-        list.add("ULA");
-        list.add("PC");
-        list.add("Couve");
-        list.add("Jaca");
-        list.add("Haha");
-        list.add("oi");
-        list.add("caca");
-        list.add("banana");
-        list.add("plane");
-        list.add("dado");
-        list.add("ULA");
-        list.add("PC");
-        list.add("Couve");
-        list.add("Jaca");
-        list.add("Haha");
-
+        list.add("Estou com frio");
+        list.add("Estou com calor");
+        list.add("Estou com fome");
+        list.add("Estou com sede");
+        list.add("Estou com dor");
+        list.add("Estou com sono");
+        list.add("Me leve para a sala");
+        list.add("Me leve para a cozinha");
+        list.add("Me leve para o quintal");
+        list.add("Me leve para o quarto");
+        list.add("Me leve para o banheiro");
+        list.add("Preciso me coçar");
+        list.add("Preciso me limpar");
+        list.add("Não estou bem, chame um médico!");
+        list.add("Não estou bem, venha me ajudar");
+        list.add("Bom dia!");
+        list.add("Boa tarde!");
+        list.add("Boa noite!");
+        list.add("Tudo bem com você?");
+        list.add("Estou bem");
 
         TextView textList0 = findViewById(R.id.text_list0);
         views.add(textList0);
@@ -81,6 +80,8 @@ public class SelecaoMensagem extends AppCompatActivity {
         views.add(textList8);
         TextView textList9 = findViewById(R.id.text_list9);
         views.add(textList9);
+
+
         Button buttonChoice = findViewById(R.id.button_choice);
         Button buttonBack = findViewById(R.id.button_back);
         Button buttonUp = findViewById(R.id.button_up);
