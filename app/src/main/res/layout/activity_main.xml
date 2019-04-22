@@ -65,6 +65,14 @@
         android:textSize="15sp"
         android:text="Vamos conversar?"/>
 
+    <Button
+        android:id="@+id/button_example"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_columnWeight="1"
+        android:text="Seleção Mensagem" />
+
 
 </LinearLayout>
 
