@@ -83,7 +83,7 @@ public class Translator {
         nodeW.setLeft(nodeP);
         nodeW.setRight(nodeJ);
         Node nodeB = new Node('b');
-        Node nodeX =new Node('c');
+        Node nodeX =new Node('x');
         nodeD.setLeft(nodeB);
         nodeD.setRight(nodeX);
         Node nodeC = new Node('c');
@@ -201,7 +201,19 @@ public class Translator {
     // Você deve mudar o recheio deste método, de
     // acordo com os requisitos não-funcionais.
     public char morseToChar(String code) {
-        return ' ';
+        Node morseNode = root;
+        char morseNodeValue;
+        if (code.length() < 6) {
+            for (int i = 0; i < code.length(); i++) {
+                if (code.charAt(i) == '.') {
+                    morseNode = morseNode.getLeft();
+                } else {
+                    morseNode = morseNode.getRight();
+                }
+            }
+        }
+        morseNodeValue = morseNode.getValue();
+        return morseNodeValue;
     }
 
 
