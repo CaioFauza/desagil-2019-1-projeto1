@@ -14,6 +14,7 @@
         android:layout_marginBottom="44dp"
         android:background="#0BFCB1"
         android:text="Tocar .   Pressionar -"
+        android:drawableBottom="@drawable/ic_touch_app_black_24dp"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +28,7 @@
         android:layout_height="26dp"
         android:layout_marginBottom="100dp"
         android:background="#0BFCB1"
-        android:text="Espaço"
+        android:drawableBottom="@drawable/ic_space_bar_black_24dp"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,7 +42,7 @@
         android:layout_height="26dp"
         android:layout_marginBottom="148dp"
         android:background="#0BFCB1"
-        android:drawableBottom="@drawable/ic_arrow_upward_black_24dp"
+        android:drawableBottom="@drawable/ic_publish_black_24dp"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
