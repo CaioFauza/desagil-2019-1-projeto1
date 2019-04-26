@@ -9,87 +9,89 @@
 
     <Button
         android:id="@+id/buttonMorse"
-        android:layout_width="142dp"
-        android:layout_height="134dp"
-        android:layout_marginBottom="44dp"
-        android:background="#41d9f4"
-        android:text="Tocar .   Pressionar -"
+        android:layout_width="167dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="52dp"
+        android:background="#808080"
         android:drawableBottom="@drawable/ic_touch_app_black_24dp"
+        android:text="Tocar . \n
+        \n
+Pressionar -"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintHorizontal_bias="0.213"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonSpace"
-        android:layout_width="82dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="100dp"
-        android:background="#41d9f4"
+        android:layout_width="85dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="84dp"
+        android:background="#808080"
         android:drawableBottom="@drawable/ic_space_bar_black_24dp"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonDel"
-        android:layout_width="82dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="52dp"
-        android:background="#41d9f4"
+        android:layout_width="85dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="28dp"
+        android:background="#808080"
         android:drawableBottom="@drawable/ic_backspace_black_24dp"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/buttonSet"
-        android:layout_width="82dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="148dp"
-        android:background="#4b42f4"
+        android:layout_width="85dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="164dp"
+        android:background="#00FF00"
         android:drawableBottom="@drawable/ic_publish_black_24dp"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintHorizontal_bias="0.306"
         app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/buttonBack"
-        android:layout_width="71dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="188dp"
-        android:background="#a041f4"
+        android:layout_width="85dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="140dp"
+        android:background="#808080"
         android:drawableBottom="@drawable/ic_keyboard_backspace_black_24dp"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/buttonFinish"
-        android:layout_width="71dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="188dp"
-        android:background="#a041f4"
+        android:layout_width="85dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="196dp"
+        android:background="#00FF00"
         android:drawableBottom="@drawable/ic_input_black_24dp"
         android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.408"
+        app:layout_constraintHorizontal_bias="0.886"
         app:layout_constraintStart_toStartOf="parent" />
 
 
@@ -98,9 +100,50 @@
         android:layout_width="270dp"
         android:layout_height="368dp"
         android:layout_marginStart="68dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="92dp"
         android:text=""
         android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/newMessageText"
+        android:layout_width="195dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="16dp"
+        android:text="Nova Mensagem"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="71dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="148dp"
+        android:layout_marginTop="16dp"
+        android:text="Nome"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/numberText"
+        android:layout_width="94dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="16dp"
+        android:text="Número"
+        android:textColor="#000000"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

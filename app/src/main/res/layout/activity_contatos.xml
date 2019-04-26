@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="2"
-    android:rowCount="3"
+    android:rowCount="4"
     tools:context=".SelecaoMensagem">
 
     <TextView
@@ -134,5 +134,11 @@
         android:layout_height="wrap_content"
         android:layout_columnWeight="1"
         android:text="Down" />
+
+    <Button
+        android:id="@+id/buttonAddContact"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="ADD CONTACT(SUBSTITUIR SAMUEL)" />
 
 </GridLayout>
