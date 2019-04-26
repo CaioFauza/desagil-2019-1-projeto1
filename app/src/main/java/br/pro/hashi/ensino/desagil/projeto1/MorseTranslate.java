@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 public class MorseTranslate extends AppCompatActivity {
 
-    String stringTranslated = "";
-    String preTranslated = "";
+    private String stringTranslated = "";
+    private String preTranslated = "";
+    private String wordTranslated;
+    public boolean word;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,25 +30,45 @@ public class MorseTranslate extends AppCompatActivity {
 
         buttonSet.setOnClickListener((view) -> {
 
-            stringTranslated += String.valueOf(translator.morseToChar(preTranslated));
+            word = true;
+
+            wordTranslated = String.valueOf(translator.morseToChar(preTranslated));
+
+            if(!"!".equals(wordTranslated) && !"*".equals(wordTranslated)){ stringTranslated += wordTranslated; }
+
             morseText.setText(stringTranslated);
             preTranslated = "";
 
-
-
-
         });
 
+        buttonSpace.setOnClickListener((view) -> {
+            if(word){
+                stringTranslated += " ";
+                morseText.setText(stringTranslated);
+            }
+        });
 
-
+        butonDel.setOnClickListener((view) -> {
+            if(word){
+                stringTranslated = stringTranslated.substring(0, stringTranslated.length() - 1);
+                morseText.setText(stringTranslated);
+            }
+            if(!word && preTranslated.length() != 0) {
+                preTranslated = preTranslated.substring(0, preTranslated.length() - 1);
+                morseText.setText(stringTranslated);
+                morseText.append(preTranslated);
+            }
+        });
 
         buttonMorse.setOnClickListener((view) -> {
+            word = false;
             preTranslated += ".";
             morseText.append(".");
             });
 
 
         buttonMorse.setOnLongClickListener((view) -> {
+            word = false;
             preTranslated += "-";
             morseText.append("-");
 
