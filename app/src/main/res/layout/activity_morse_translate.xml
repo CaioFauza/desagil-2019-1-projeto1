@@ -12,7 +12,7 @@
         android:layout_width="142dp"
         android:layout_height="134dp"
         android:layout_marginBottom="44dp"
-        android:background="#0BFCB1"
+        android:background="#41d9f4"
         android:text="Tocar .   Pressionar -"
         android:drawableBottom="@drawable/ic_touch_app_black_24dp"
         android:textAllCaps="false"
@@ -27,22 +27,8 @@
         android:layout_width="82dp"
         android:layout_height="26dp"
         android:layout_marginBottom="100dp"
-        android:background="#0BFCB1"
+        android:background="#41d9f4"
         android:drawableBottom="@drawable/ic_space_bar_black_24dp"
-        android:textAllCaps="false"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.826"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/buttonSet"
-        android:layout_width="82dp"
-        android:layout_height="26dp"
-        android:layout_marginBottom="148dp"
-        android:background="#0BFCB1"
-        android:drawableBottom="@drawable/ic_publish_black_24dp"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,13 +41,55 @@
         android:layout_width="82dp"
         android:layout_height="26dp"
         android:layout_marginBottom="52dp"
-        android:background="#0BFCB1"
+        android:background="#41d9f4"
         android:drawableBottom="@drawable/ic_backspace_black_24dp"
         android:textAllCaps="false"
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/buttonSet"
+        android:layout_width="82dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="148dp"
+        android:background="#4b42f4"
+        android:drawableBottom="@drawable/ic_publish_black_24dp"
+        android:textAllCaps="false"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="71dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="188dp"
+        android:background="#a041f4"
+        android:drawableBottom="@drawable/ic_keyboard_backspace_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.194"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonFinish"
+        android:layout_width="71dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="188dp"
+        android:background="#a041f4"
+        android:drawableBottom="@drawable/ic_input_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.408"
         app:layout_constraintStart_toStartOf="parent" />
 
 
