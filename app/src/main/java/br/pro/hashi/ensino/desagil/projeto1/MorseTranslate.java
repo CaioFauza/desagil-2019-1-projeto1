@@ -27,6 +27,7 @@ public class MorseTranslate extends AppCompatActivity {
         Button buttonSet = findViewById(R.id.buttonSet);
         Button butonDel = findViewById(R.id.buttonDel);
         Button buttonSpace = findViewById(R.id.buttonSpace);
+        Button buttonBack = findViewById(R.id.buttonBack);
 
         buttonSet.setOnClickListener((view) -> {
 
@@ -42,14 +43,22 @@ public class MorseTranslate extends AppCompatActivity {
         });
 
         buttonSpace.setOnClickListener((view) -> {
-            if(word){
+            if(preTranslated.length() == 0){
+                word = true;
+            }
+            if(word && stringTranslated.length() != 0){
                 stringTranslated += " ";
                 morseText.setText(stringTranslated);
             }
         });
 
         butonDel.setOnClickListener((view) -> {
-            if(word){
+
+            if(preTranslated.length() == 0){
+                word = true;
+            }
+
+            if(word && stringTranslated.length() != 0){
                 stringTranslated = stringTranslated.substring(0, stringTranslated.length() - 1);
                 morseText.setText(stringTranslated);
             }
