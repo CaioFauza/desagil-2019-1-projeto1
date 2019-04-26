@@ -331,7 +331,7 @@ public class Translator {
             queue.remove();
 
         }
-        return charList;
+            return charList;
     }
 
 }
