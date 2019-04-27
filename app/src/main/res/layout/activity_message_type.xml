@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MessageType">
+
+
+    <Button
+        android:id="@+id/buttonNewMessage"
+        android:layout_width="216dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="344dp"
+        android:background="#41d9f4"
+        android:text="Nova mensagem"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/buttonListOfMessages"
+        android:layout_width="216dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="140dp"
+        android:background="#41d9f4"
+
+        android:text="Exibir lista de mensagens"
+        android:textAllCaps="false"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

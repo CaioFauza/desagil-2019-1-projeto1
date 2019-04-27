@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:rowCount="4"
+    tools:context=".SelecaoMensagem">
+
+    <TextView
+        android:id="@+id/text_list0"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:textColor="#0037FF"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list1"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list2"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list3"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list4"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list5"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list6"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list7"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list8"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+    <TextView
+        android:id="@+id/text_list9"
+        android:layout_height="wrap_content"
+        android:layout_columnSpan="2"
+        android:layout_columnWeight="1"
+        android:gravity="center"
+        android:layout_margin="4dp"
+        android:textSize="15sp"
+        />
+
+
+    <Button
+        android:id="@+id/button_choice"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="Delete" />
+
+    <Button
+        android:id="@+id/button_up"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="Up" />
+
+
+    <Button
+        android:id="@+id/button_back"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="Back"
+/>
+
+    <Button
+        android:id="@+id/button_down"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="Down" />
+
+    <Button
+        android:id="@+id/buttonAddContact"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:text="ADD CONTACT(SUBSTITUIR SAMUEL)" />
+
+</GridLayout>
