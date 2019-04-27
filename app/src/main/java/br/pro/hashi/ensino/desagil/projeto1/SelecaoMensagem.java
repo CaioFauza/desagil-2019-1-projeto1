@@ -39,6 +39,7 @@ public class SelecaoMensagem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecao_mensagem);
+
         list.add("Estou com frio");
         list.add("Estou com calor");
         list.add("Estou com fome");
@@ -60,8 +61,6 @@ public class SelecaoMensagem extends AppCompatActivity {
         list.add("Tudo bem com você?");
         list.add("Estou bem");
 
-        TextView textList0 = findViewById(R.id.text_list0);
-        views.add(textList0);
         TextView textList1 = findViewById(R.id.text_list1);
         views.add(textList1);
         TextView textList2 = findViewById(R.id.text_list2);
@@ -80,7 +79,6 @@ public class SelecaoMensagem extends AppCompatActivity {
         views.add(textList8);
         TextView textList9 = findViewById(R.id.text_list9);
         views.add(textList9);
-
 
         Button buttonChoice = findViewById(R.id.button_choice);
         Button buttonBack = findViewById(R.id.button_back);

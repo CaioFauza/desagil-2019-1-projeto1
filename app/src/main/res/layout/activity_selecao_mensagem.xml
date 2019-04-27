@@ -1,137 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:columnCount="2"
     android:rowCount="3"
     tools:context=".SelecaoMensagem">
 
-    <TextView
-        android:id="@+id/text_list0"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:textColor="#0037FF"
-        android:layout_margin="4dp"
-        android:textSize="15sp"
-        />
 
     <TextView
         android:id="@+id/text_list1"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="96dp"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_list2"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="140dp"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_list3"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="188dp"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_list4"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="232dp"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_list5"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="276dp"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_list6"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="324dp"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_list7"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="368dp"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/text_list8"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="412dp"
+        android:text=""
         android:textSize="15sp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+
+    <TextView
         android:id="@+id/text_list9"
-        android:layout_height="wrap_content"
-        android:layout_columnSpan="2"
-        android:layout_columnWeight="1"
-        android:gravity="center"
-        android:layout_margin="4dp"
+        android:layout_width="273dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="460dp"
+        android:text=""
         android:textSize="15sp"
-        />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_choice"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:text="Select" />
+        android:layout_width="71dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="84dp"
+        android:background="#a041f4"
+        android:drawableBottom="@drawable/ic_playlist_add_check_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_up"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:text="Up" />
+        android:layout_width="55dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="84dp"
+        android:background="#a041f4"
+        android:drawableBottom="@drawable/ic_keyboard_arrow_up_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="50dp"
+        android:layout_height="42dp"
+        android:layout_marginBottom="68dp"
+        android:background="#a041f4"
+        android:drawableBottom="@drawable/ic_add_circle_outline_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.645"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
         android:id="@+id/button_back"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:text="Back" />
+        android:layout_width="71dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="40dp"
+        android:background="#a041f4"
+        android:drawableBottom="@drawable/ic_keyboard_backspace_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_down"
-        android:layout_height="wrap_content"
-        android:layout_columnWeight="1"
-        android:text="Down" />
+        android:layout_width="55dp"
+        android:layout_height="33dp"
+        android:layout_marginBottom="36dp"
+        android:background="#a041f4"
+        android:drawableBottom="@drawable/ic_keyboard_arrow_down_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</GridLayout>
+</android.support.constraint.ConstraintLayout>
