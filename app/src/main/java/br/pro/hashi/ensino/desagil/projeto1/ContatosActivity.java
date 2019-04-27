@@ -18,20 +18,22 @@ public class ContatosActivity extends AppCompatActivity {
     private LinkedList<TextView> views = new LinkedList<>();
     private LinkedList<String> keys;
 
-    private void startMainActivity() {
-
-        Intent intent = new Intent(this, MainActivity.class);
-
-
-        startActivity(intent);
-    }
-    
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_selecao_mensagem);
+        setContentView(R.layout.activity_contatos);
+        Button addContactButton = findViewById(R.id.buttonAddContact);
+        Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
+
+        addContactButton.setOnClickListener((view) -> {
+
+            morseTranslateIntent.putExtra("morseTranslateActivity", "contactListName");
+            startActivity(morseTranslateIntent);
+
+
+        });
         contatos.put("Z", "5****");
         contatos.put("X", "55257963");
         contatos.put("A", "5..........963");
@@ -99,9 +101,7 @@ public class ContatosActivity extends AppCompatActivity {
             }
         });
 
-        buttonBack.setOnClickListener((view) -> {
-            startMainActivity();
-        });
+
 
 
         buttonChoice.setOnClickListener((view) -> {
