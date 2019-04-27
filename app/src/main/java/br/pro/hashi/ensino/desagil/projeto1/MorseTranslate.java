@@ -19,13 +19,6 @@ public class MorseTranslate extends AppCompatActivity {
     private String wordTranslated;
     public boolean word;
 
-
-
-
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
