@@ -20,9 +20,9 @@ public class SelecaoMensagem extends AppCompatActivity {
     private LinkedList<TextView> views = new LinkedList<>();
     private static final int REQUEST_SEND_SMS = 0;
 
-    private void startMainActivity() {
+    private void startMessageType() {
 
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MessageType.class);
 
 
         startActivity(intent);
@@ -39,6 +39,8 @@ public class SelecaoMensagem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selecao_mensagem);
+
+        Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
 
         list.add("Estou com frio");
         list.add("Estou com calor");
@@ -84,6 +86,7 @@ public class SelecaoMensagem extends AppCompatActivity {
         Button buttonBack = findViewById(R.id.button_back);
         Button buttonUp = findViewById(R.id.button_up);
         Button buttonDown = findViewById(R.id.button_down);
+        Button buttonAdd = findViewById(R.id.button_add);
 
         if(list.size() == 0){
             views.get(0).setText("Lista Vazia");
@@ -115,9 +118,16 @@ public class SelecaoMensagem extends AppCompatActivity {
         });
 
         buttonBack.setOnClickListener((view) -> {
-            startMainActivity();
+            startMessageType();
         });
 
+        buttonAdd.setOnClickListener((view) -> {
+
+            morseTranslateIntent.putExtra("morseTranslateActivity", "buttonAdd");
+            startActivity(morseTranslateIntent);
+
+
+        });
 
         buttonChoice.setOnClickListener((view) -> {
             setName();

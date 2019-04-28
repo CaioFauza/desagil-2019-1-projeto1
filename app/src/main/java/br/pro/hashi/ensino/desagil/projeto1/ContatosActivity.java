@@ -34,12 +34,11 @@ public class ContatosActivity extends AppCompatActivity {
 
 
         });
-        contatos.put("Z", "5****");
-        contatos.put("X", "55257963");
-        contatos.put("A", "5..........963");
-        contatos.put("E", "55hhhhhhhhhh");
-        contatos.put("G", "522222222222223");
-        contatos.put("F", "5ttttttt");
+        contatos.put("Carlos", "(11)991208330");
+        contatos.put("Roberto", "(11)993246770");
+        contatos.put("Samuel", "(11)994837119");
+        contatos.put("Leonardo", "(11)993978330");
+        contatos.put("Fauza", "(11)994573882");
 
 
         keys = new LinkedList<>(contatos.keySet());
@@ -67,7 +66,7 @@ public class ContatosActivity extends AppCompatActivity {
         views.add(textList9);
 
 
-        Button buttonChoice = findViewById(R.id.button_choice);
+        Button buttonDel = findViewById(R.id.button_del);
         Button buttonBack = findViewById(R.id.button_back);
         Button buttonUp = findViewById(R.id.button_up);
         Button buttonDown = findViewById(R.id.button_down);
@@ -104,7 +103,7 @@ public class ContatosActivity extends AppCompatActivity {
 
 
 
-        buttonChoice.setOnClickListener((view) -> {
+        buttonDel.setOnClickListener((view) -> {
             if(at == 0){
                 updateList();
             }
