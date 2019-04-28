@@ -50,6 +50,7 @@ public class MorseTranslate extends AppCompatActivity {
         });
 
         }
+
         if(prevActivity.equals("contactListNumber")){
             numberText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
@@ -58,14 +59,12 @@ public class MorseTranslate extends AppCompatActivity {
             });
 
         }
-        if(prevActivity.equals("newMessage")){
+
+        if(prevActivity.equals("newMessage") || prevActivity.equals("buttonAdd")){
             nameText.setVisibility(View.INVISIBLE);
             numberText.setVisibility(View.INVISIBLE);
 
             newMessageText.setVisibility(View.VISIBLE);
-
-
-
         }
 
 
