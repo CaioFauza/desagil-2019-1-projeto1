@@ -17,7 +17,10 @@ public class MorseTranslate extends AppCompatActivity {
     private String stringTranslated = "";
     private String preTranslated = "";
     private String wordTranslated;
+    private static String nameContact;
+    private static String numberContact;
     public boolean word;
+    ContatosActivity c = new ContatosActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,17 +47,21 @@ public class MorseTranslate extends AppCompatActivity {
         if(prevActivity.equals("contactListName")){
             nameText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
+                this.nameContact = morseText.getText().toString();
                 morseTranslateIntent.putExtra("morseTranslateActivity", "contactListNumber");
                 startActivity(morseTranslateIntent);
 
-        });
+            });
 
         }
 
         if(prevActivity.equals("contactListNumber")){
             numberText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
+                this.numberContact = morseText.getText().toString();
+                contactActivityIntent.putExtra("morseTranslateActivity","contact");
                 startActivity(contactActivityIntent);
+                addOnContactList();
 
             });
 
@@ -125,5 +132,17 @@ public class MorseTranslate extends AppCompatActivity {
 
         });
 
+    }
+
+    public String getNameContact() {
+        return nameContact;
+    }
+
+    public String getNumberContact() {
+        return numberContact;
+    }
+
+    public void addOnContactList(){
+        c.contatos.put(getNameContact(), getNumberContact());
     }
 }

@@ -87,6 +87,7 @@ public class SelecaoMensagem extends AppCompatActivity {
         Button buttonUp = findViewById(R.id.button_up);
         Button buttonDown = findViewById(R.id.button_down);
         Button buttonAdd = findViewById(R.id.button_add);
+        Button buttonDel = findViewById(R.id.button_del);
 
         if(list.size() == 0){
             views.get(0).setText("Lista Vazia");
@@ -144,6 +145,16 @@ public class SelecaoMensagem extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, permissions, REQUEST_SEND_SMS);
             }
 
+        });
+
+        buttonDel.setOnClickListener((view) -> {
+            if(at == 0){
+                updateList();
+            }
+            else{
+                this.list.remove(list.get(at));
+                updateList();
+            }
         });
 
     }

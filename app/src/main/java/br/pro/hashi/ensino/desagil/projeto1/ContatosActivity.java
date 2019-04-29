@@ -14,9 +14,11 @@ import java.util.LinkedList;
 public class ContatosActivity extends AppCompatActivity {
     private int at = 0;
     public static String name;
-    private HashMap<String, String> contatos = new HashMap<>();
+    public static HashMap<String, String> contatos = new HashMap<>();
     private LinkedList<TextView> views = new LinkedList<>();
     private LinkedList<String> keys;
+
+
 
 
 
@@ -26,6 +28,10 @@ public class ContatosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contatos);
         Button addContactButton = findViewById(R.id.buttonAddContact);
         Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
+        MorseTranslate m = new MorseTranslate();
+
+        Intent contactActivityIntent = getIntent();
+        String prevActivity = contactActivityIntent.getStringExtra("morseTranslateActivity");
 
         addContactButton.setOnClickListener((view) -> {
 
@@ -34,11 +40,9 @@ public class ContatosActivity extends AppCompatActivity {
 
 
         });
-        contatos.put("Carlos", "(11)991208330");
-        contatos.put("Roberto", "(11)993246770");
-        contatos.put("Samuel", "(11)994837119");
-        contatos.put("Leonardo", "(11)993978330");
-        contatos.put("Fauza", "(11)994573882");
+
+
+
 
 
         keys = new LinkedList<>(contatos.keySet());
@@ -62,8 +66,7 @@ public class ContatosActivity extends AppCompatActivity {
         views.add(textList7);
         TextView textList8 = findViewById(R.id.text_list8);
         views.add(textList8);
-        TextView textList9 = findViewById(R.id.text_list9);
-        views.add(textList9);
+
 
 
         Button buttonDel = findViewById(R.id.button_del);
@@ -85,6 +88,7 @@ public class ContatosActivity extends AppCompatActivity {
 
             }
         }
+
         buttonUp.setOnClickListener((view) -> {
             if(at < contatos.size()-1){
                 at += 1;
@@ -105,6 +109,10 @@ public class ContatosActivity extends AppCompatActivity {
 
         buttonDel.setOnClickListener((view) -> {
             if(at == 0){
+                updateList();
+            }
+            else{
+                this.contatos.remove(keys.get(at));
                 updateList();
             }
         });
