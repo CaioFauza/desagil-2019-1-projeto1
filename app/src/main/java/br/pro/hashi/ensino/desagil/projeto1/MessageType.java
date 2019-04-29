@@ -7,13 +7,6 @@ import android.widget.Button;
 
 public class MessageType extends AppCompatActivity {
 
-    private void SelecaoMensagem() {
-
-        Intent intent = new Intent(this, SelecaoMensagem.class);
-
-
-        startActivity(intent);
-    }
 
 
     @Override
@@ -36,7 +29,9 @@ public class MessageType extends AppCompatActivity {
         });
 
         preMessage.setOnClickListener((view) -> {
-            SelecaoMensagem();
+
+            oldMorseMessages.putExtra("selecaoMensagemActivity", "oldMessage");
+            startActivity(oldMorseMessages);
 
         });
     }

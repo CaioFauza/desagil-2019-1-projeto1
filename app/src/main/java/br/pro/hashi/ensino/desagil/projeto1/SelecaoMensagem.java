@@ -15,8 +15,8 @@ import java.util.LinkedList;
 
 public class SelecaoMensagem extends AppCompatActivity {
     private int at = 0;
-    public static String name;
-    private LinkedList<String> list = new LinkedList<>();
+    private static String name;
+    private static LinkedList<String> list = new LinkedList<>();
     private LinkedList<TextView> views = new LinkedList<>();
     private static final int REQUEST_SEND_SMS = 0;
 
@@ -42,26 +42,26 @@ public class SelecaoMensagem extends AppCompatActivity {
 
         Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
 
-        list.add("Estou com frio");
-        list.add("Estou com calor");
-        list.add("Estou com fome");
-        list.add("Estou com sede");
-        list.add("Estou com dor");
-        list.add("Estou com sono");
-        list.add("Me leve para a sala");
-        list.add("Me leve para a cozinha");
-        list.add("Me leve para o quintal");
-        list.add("Me leve para o quarto");
-        list.add("Me leve para o banheiro");
-        list.add("Preciso me coçar");
-        list.add("Preciso me limpar");
-        list.add("Não estou bem, chame um médico!");
-        list.add("Não estou bem, venha me ajudar");
-        list.add("Bom dia!");
-        list.add("Boa tarde!");
-        list.add("Boa noite!");
-        list.add("Tudo bem com você?");
-        list.add("Estou bem");
+//        list.add("Estou com frio");
+//        list.add("Estou com calor");
+//        list.add("Estou com fome");
+//        list.add("Estou com sede");
+//        list.add("Estou com dor");
+//        list.add("Estou com sono");
+//        list.add("Me leve para a sala");
+//        list.add("Me leve para a cozinha");
+//        list.add("Me leve para o quintal");
+//        list.add("Me leve para o quarto");
+//        list.add("Me leve para o banheiro");
+//        list.add("Preciso me coçar");
+//        list.add("Preciso me limpar");
+//        list.add("Não estou bem, chame um médico!");
+//        list.add("Não estou bem, venha me ajudar");
+//        list.add("Bom dia!");
+//        list.add("Boa tarde!");
+//        list.add("Boa noite!");
+//        list.add("Tudo bem com você?");
+//        list.add("Estou bem");
 
         TextView textList1 = findViewById(R.id.text_list1);
         views.add(textList1);
@@ -130,19 +130,22 @@ public class SelecaoMensagem extends AppCompatActivity {
         });
 
         buttonChoice.setOnClickListener((view) -> {
-            setName();
+            if(list.size() > 0 ){
+                setName();
 
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
 
-                startSMSActivity();
-            } else {
+                    startSMSActivity();
+                } else {
 
-                String[] permissions = new String[]{
-                        Manifest.permission.SEND_SMS,
-                };
+                    String[] permissions = new String[]{
+                            Manifest.permission.SEND_SMS,
+                    };
 
-                ActivityCompat.requestPermissions(this, permissions, REQUEST_SEND_SMS);
+                    ActivityCompat.requestPermissions(this, permissions, REQUEST_SEND_SMS);
+                }
             }
+
 
         });
 
@@ -151,6 +154,8 @@ public class SelecaoMensagem extends AppCompatActivity {
     public void setName() { this.name = list.get(at); }
 
     public String getName() { return name; }
+
+    public LinkedList<String> getList() { return list; }
 
     private void updateList(){
         if(list.size() - at > views.size()){

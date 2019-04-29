@@ -27,6 +27,7 @@ public class MorseTranslate extends AppCompatActivity {
         Intent morseTranslateIntent = getIntent();
         String prevActivity = morseTranslateIntent.getStringExtra("morseTranslateActivity");
         Intent contactActivityIntent = new Intent(this, ContatosActivity.class);
+        Intent selecaoActivityIntent = new Intent(this, SelecaoMensagem.class);
 
 
 
@@ -60,11 +61,20 @@ public class MorseTranslate extends AppCompatActivity {
 
         }
 
-        if(prevActivity.equals("newMessage") || prevActivity.equals("buttonAdd")){
-            nameText.setVisibility(View.INVISIBLE);
-            numberText.setVisibility(View.INVISIBLE);
+        if(prevActivity.equals("buttonAdd")){
+            SelecaoMensagem mesageList = new SelecaoMensagem();
 
             newMessageText.setVisibility(View.VISIBLE);
+            finishButton.setOnClickListener((view) -> {
+                mesageList.getList().add(stringTranslated);
+                startActivity(selecaoActivityIntent);
+
+            });
+
+            buttonBack.setOnClickListener((view) -> {
+                startActivity(selecaoActivityIntent);
+
+            });
         }
 
 
