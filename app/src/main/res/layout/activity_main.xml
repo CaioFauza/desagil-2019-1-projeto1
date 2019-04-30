@@ -1,78 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MessageType">
 
-    <TextView
-        android:id="@+id/text_0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Preciso de ajuda"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="4dp"
-        android:textSize="15sp" />
-
-    <TextView android:id="@+id/text_1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="4dp"
-        android:text="Estou com fome"/>
-
-    <TextView android:id="@+id/text_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="4dp"
-        android:textSize="15sp"
-        android:text="Estou com sede"/>
-
-
-    <TextView android:id="@+id/text_3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="4dp"
-        android:textSize="15sp"
-        android:text="Quero dormir"/>
-
-
-    <TextView android:id="@+id/text_4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="4dp"
-        android:textSize="15sp"
-        android:text="Chame meu irmão"/>
-
-    <TextView android:id="@+id/text_5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="4dp"
-        android:textSize="15sp"
-        android:text="Estou com dores"/>
-
-    <TextView android:id="@+id/text_6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="4dp"
-        android:textSize="15sp"
-        android:text="Vamos conversar?"/>
 
     <Button
-        android:id="@+id/button_example"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_columnWeight="1"
-        android:text="Seleção Mensagem" />
+        android:id="@+id/buttonContacts"
+        android:layout_width="216dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="232dp"
+        android:background="@drawable/light_blue_rectangle_button"
+        android:text="Contatos"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/buttonSendMessage"
+        android:layout_width="216dp"
+        android:layout_height="98dp"
+        android:layout_marginBottom="84dp"
+        android:background="@drawable/light_blue_rectangle_button"
+        android:text="Enviar Mensagem"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
-
+</android.support.constraint.ConstraintLayout>
