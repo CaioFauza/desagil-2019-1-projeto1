@@ -9,10 +9,15 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
 
 
-    private void startSelecaoMensagem() {
+    private void startContatosActivity() {
+        Intent intent = new Intent(this, ContatosActivity.class);
 
-        Intent intent = new Intent(this, SelecaoMensagem.class);
 
+        startActivity(intent);
+    }
+
+    private  void startMessageType() {
+        Intent intent = new Intent(this, MessageType.class);
 
         startActivity(intent);
     }
@@ -22,13 +27,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button buttonExample = findViewById(R.id.button_example);
+        Button buttonContacts = findViewById(R.id.buttonContacts);
 
-        buttonExample.setOnClickListener((view) -> {
+        Button buttonSendMessage = findViewById(R.id.buttonSendMessage);
 
-            startSelecaoMensagem();
+        buttonContacts.setOnClickListener((view) -> {
+            startContatosActivity();
 
         });
 
+        buttonSendMessage.setOnClickListener((view) -> {
+            startMessageType();
+
+        });
     }
 }
