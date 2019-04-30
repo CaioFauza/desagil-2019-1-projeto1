@@ -42,26 +42,6 @@ public class SelecaoMensagem extends AppCompatActivity {
 
         Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
 
-//        list.add("Estou com frio");
-//        list.add("Estou com calor");
-//        list.add("Estou com fome");
-//        list.add("Estou com sede");
-//        list.add("Estou com dor");
-//        list.add("Estou com sono");
-//        list.add("Me leve para a sala");
-//        list.add("Me leve para a cozinha");
-//        list.add("Me leve para o quintal");
-//        list.add("Me leve para o quarto");
-//        list.add("Me leve para o banheiro");
-//        list.add("Preciso me coçar");
-//        list.add("Preciso me limpar");
-//        list.add("Não estou bem, chame um médico!");
-//        list.add("Não estou bem, venha me ajudar");
-//        list.add("Bom dia!");
-//        list.add("Boa tarde!");
-//        list.add("Boa noite!");
-//        list.add("Tudo bem com você?");
-//        list.add("Estou bem");
 
         TextView textList1 = findViewById(R.id.text_list1);
         views.add(textList1);
@@ -151,7 +131,7 @@ public class SelecaoMensagem extends AppCompatActivity {
         });
 
         buttonDel.setOnClickListener((view) -> {
-            if(at == 0){
+            if(list.size() == 0){
                 updateList();
             }
             else{
@@ -169,7 +149,9 @@ public class SelecaoMensagem extends AppCompatActivity {
     public LinkedList<String> getList() { return list; }
 
     private void updateList(){
-        if(list.size() - at > views.size()){
+        if(list.size() == 0){
+            views.get(0).setText("Lista Vazia");
+        }else if(list.size() - at > views.size()){
             for (int i = 0; i < views.size(); i++){
                 views.get(i).setText(list.get(i + at));
             }

@@ -22,7 +22,7 @@ public class MessageType extends AppCompatActivity {
 
         newMessage.setOnClickListener((view) -> {
 
-            morseTranslateIntent.putExtra("morseTranslateActivity", "newMessage");
+            morseTranslateIntent.putExtra("morseTranslateActivity", "messageType");
             startActivity(morseTranslateIntent);
 
 
@@ -30,7 +30,7 @@ public class MessageType extends AppCompatActivity {
 
         preMessage.setOnClickListener((view) -> {
 
-            oldMorseMessages.putExtra("selecaoMensagemActivity", "oldMessage");
+            oldMorseMessages.putExtra("selecaoMensagemActivity", "messageType");
             startActivity(oldMorseMessages);
 
         });

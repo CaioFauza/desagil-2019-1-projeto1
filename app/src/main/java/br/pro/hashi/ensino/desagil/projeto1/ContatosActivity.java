@@ -28,6 +28,7 @@ public class ContatosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contatos);
         Button addContactButton = findViewById(R.id.buttonAddContact);
         Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
+        Intent mainIntent = new Intent(this, MainActivity.class);
         MorseTranslate m = new MorseTranslate();
 
         Intent contactActivityIntent = getIntent();
@@ -35,7 +36,7 @@ public class ContatosActivity extends AppCompatActivity {
 
         addContactButton.setOnClickListener((view) -> {
 
-            morseTranslateIntent.putExtra("morseTranslateActivity", "contactListName");
+            morseTranslateIntent.putExtra("morseTranslateActivity", "contactList");
             startActivity(morseTranslateIntent);
 
 
@@ -79,11 +80,11 @@ public class ContatosActivity extends AppCompatActivity {
         }else{
             if(contatos.size() > views.size()){
                 for (int i = 0; i < views.size(); i++) {
-                    views.get(i).setText(keys.get(i));
+                    views.get(i).setText(keys.get(i)+ " " + contatos.get(keys.get(i)));
                 }
             }else{
                 for (int i = 0; i < contatos.size(); i++){
-                    views.get(i).setText(keys.get(i));
+                    views.get(i).setText(keys.get(i)+ " " + contatos.get(keys.get(i)));
                 }
 
             }
@@ -108,13 +109,18 @@ public class ContatosActivity extends AppCompatActivity {
 
 
         buttonDel.setOnClickListener((view) -> {
-            if(at == 0){
+            if(contatos.size() == 0){
                 updateList();
             }
             else{
                 this.contatos.remove(keys.get(at));
                 updateList();
             }
+        });
+
+        buttonBack.setOnClickListener((view) -> {
+            mainIntent.putExtra("morseTranslateActivity", "contactList");
+            startActivity(mainIntent);
         });
 
     }
@@ -126,13 +132,15 @@ public class ContatosActivity extends AppCompatActivity {
     private void updateList(){
         keys = new LinkedList<>(contatos.keySet());
         Collections.sort(keys);
-        if(contatos.size() - at > views.size()){
+        if(contatos.size() == 0) {
+            views.get(0).setText("Lista Vazia");
+        }else if(contatos.size() - at > views.size()){
             for (int i = 0; i < views.size(); i++){
-                views.get(i).setText(keys.get(i + at));
+                views.get(i).setText(keys.get(i + at)+ " " + contatos.get(keys.get(i + at)));
             }
         }else{
             for (int i = 0; i < contatos.size() - at; i++){
-                views.get(i).setText(keys.get(i + at));
+                views.get(i).setText(keys.get(i + at)+ " " + contatos.get(keys.get(i + at)));
             }
             for (int i = contatos.size() - at; i < views.size(); i++){
                 views.get(i).setText("");
