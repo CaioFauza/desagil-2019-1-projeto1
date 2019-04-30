@@ -6,10 +6,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 
 public class MorseTranslate extends AppCompatActivity {
@@ -21,6 +26,9 @@ public class MorseTranslate extends AppCompatActivity {
     private static String numberContact;
     public boolean word;
     ContatosActivity c = new ContatosActivity();
+    private HashMap<String, String> map;
+    private LinkedList<String> morse;
+    private LinkedList<String> alfaNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +39,23 @@ public class MorseTranslate extends AppCompatActivity {
         String prevActivity = morseTranslateIntent.getStringExtra("morseTranslateActivity");
         Intent contactActivityIntent = new Intent(this, ContatosActivity.class);
         Intent selecaoActivityIntent = new Intent(this, SelecaoMensagem.class);
+        Intent translateActivityIntent = new Intent(this, MorseTranslate.class);
+        Intent messageTypeActivityIntent = new Intent(this, MessageType.class);
+        morse = new LinkedList<>();
+        alfaNum = new LinkedList<>();
 
+        morse = translator.getCodes();
+        for(String code: morse){
+            alfaNum.add(Character.toString(translator.morseToChar(code)));
+        }
+        Collections.sort(alfaNum);
+
+        for (int i = 0; i < alfaNum.size(); i++) {
+            alfaNum.set(i, alfaNum.get(i) + " : " + translator.charToMorse((alfaNum.get(i)).charAt(0)));
+        }
+        for (int i = 0; i < morse.size(); i++) {
+            morse.set(i, morse.get(i) + " : " + translator.morseToChar((morse.get(i))));
+        }
 
 
         Button buttonMorse = findViewById(R.id.buttonMorse);
@@ -45,24 +69,48 @@ public class MorseTranslate extends AppCompatActivity {
         TextView newMessageText = findViewById(R.id.newMessageText);
         Button finishButton = findViewById(R.id.buttonFinish);
 
-        if(prevActivity.equals("contactListName")){
+        if(prevActivity.equals("contactList") || prevActivity.equals("contactNumber")){
             nameText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
-                this.nameContact = morseText.getText().toString();
-                morseTranslateIntent.putExtra("morseTranslateActivity", "contactListNumber");
-                startActivity(morseTranslateIntent);
+                // Se a string não estiver vazia
+                if(stringTranslated.length() > 0) {
+                    this.nameContact = stringTranslated;
+                    morseTranslateIntent.putExtra("morseTranslateActivity", "contactName");
+                    startActivity(morseTranslateIntent);
+                }else{
+                    //Mostra que string está vazia
+                }
+            });
+
+            buttonBack.setOnClickListener((view) -> {
+                startActivity(contactActivityIntent);
 
             });
 
         }
 
-        if(prevActivity.equals("contactListNumber")){
+        if(prevActivity.equals("contactName")){
             numberText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
-                this.numberContact = morseText.getText().toString();
-                contactActivityIntent.putExtra("morseTranslateActivity","contact");
-                startActivity(contactActivityIntent);
-                addOnContactList();
+                // Se a string não estiver vazia
+                if(stringTranslated.length() > 0) {
+                    // Checa se e a string só tem números e é do tamanho certo
+                    if (stringTranslated.matches("[0-9]+") && stringTranslated.length() >= 2 && stringTranslated.length() <= 12) {
+                        this.numberContact = stringTranslated;
+                        contactActivityIntent.putExtra("morseTranslateActivity", "contactNumber");
+                        startActivity(contactActivityIntent);
+                        addOnContactList();
+                    }else{
+                        //Mostra que número é inválido
+                    }
+                }else{
+                    //Mostra que string está vazia
+                }
+            });
+
+            buttonBack.setOnClickListener((view) -> {
+                translateActivityIntent.putExtra("morseTranslateActivity", "contactNumber");
+                startActivity(translateActivityIntent);
 
             });
 
@@ -73,15 +121,38 @@ public class MorseTranslate extends AppCompatActivity {
 
             newMessageText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
-                mesageList.getList().add(stringTranslated);
-                startActivity(selecaoActivityIntent);
-
+                // Se a string não estiver vazia
+                if(stringTranslated.length() > 0) {
+                    mesageList.getList().add(stringTranslated);
+                    startActivity(selecaoActivityIntent);
+                }else{
+                    //Mostra que string está vazia
+            }
             });
 
             buttonBack.setOnClickListener((view) -> {
                 startActivity(selecaoActivityIntent);
 
             });
+
+
+        }
+        if(prevActivity.equals("messageType")){
+            finishButton.setOnClickListener((view) -> {
+                // Se a string não estiver vazia
+                if(stringTranslated.length() > 0) {
+                    messageTypeActivityIntent.putExtra("morseTranslateActivity", "newMessage");
+                    startActivity(messageTypeActivityIntent);
+                }else{
+                    //Mostra que string está vazia
+                }
+            });
+
+            buttonBack.setOnClickListener((view) -> {
+                startActivity(messageTypeActivityIntent);
+
+            });
+
         }
 
 
@@ -154,5 +225,14 @@ public class MorseTranslate extends AppCompatActivity {
 
     public void addOnContactList(){
         c.contatos.put(getNameContact(), getNumberContact());
+    }
+
+    private void showToast(String text) {
+
+        // Constrói uma bolha de duração curta.
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+
+        // Mostra essa bolha.
+        toast.show();
     }
 }
