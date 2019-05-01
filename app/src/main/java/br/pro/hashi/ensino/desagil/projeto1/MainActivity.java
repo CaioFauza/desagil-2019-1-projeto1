@@ -11,8 +11,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void startContatosActivity() {
         Intent intent = new Intent(this, ContatosActivity.class);
-
-
+        intent.putExtra("contatosActivityIntent", "mainPage");
         startActivity(intent);
     }
 
