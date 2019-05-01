@@ -7,6 +7,17 @@ import android.widget.Button;
 
 public class MessageType extends AppCompatActivity {
 
+    private void startMainActivity() {
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    private void startSelecaoMensagem(){
+
+        Intent intent = new Intent(this, SelecaoMensagem.class);
+        startActivity(intent);
+    }
 
 
     @Override
@@ -17,21 +28,22 @@ public class MessageType extends AppCompatActivity {
 
         Button newMessage = findViewById(R.id.buttonNewMessage);
         Button preMessage = findViewById(R.id.buttonOldMessages);
+        Button buttonBack = findViewById(R.id.buttonBack);
         Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
-        Intent oldMorseMessages = new Intent(this, SelecaoMensagem.class);
 
         newMessage.setOnClickListener((view) -> {
-
-            morseTranslateIntent.putExtra("morseTranslateActivity", "messageType");
+            morseTranslateIntent.putExtra("morseTranslateActivity", "newMessage");
             startActivity(morseTranslateIntent);
 
 
         });
 
-        preMessage.setOnClickListener((view) -> {
+        buttonBack.setOnClickListener((view) -> {
+            startMainActivity();
+        });
 
-            oldMorseMessages.putExtra("selecaoMensagemActivity", "messageType");
-            startActivity(oldMorseMessages);
+        preMessage.setOnClickListener((view) -> {
+            startSelecaoMensagem();
 
         });
     }

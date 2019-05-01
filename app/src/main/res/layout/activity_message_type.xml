@@ -33,4 +33,17 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/buttonBack"
+        android:layout_width="79dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/light_blue_rectangle_button"
+        android:drawableBottom="@drawable/ic_keyboard_backspace_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

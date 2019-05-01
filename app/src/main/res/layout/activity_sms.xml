@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,32 +10,56 @@
 
     <TextView
         android:id="@+id/text_message"
-        android:layout_height="wrap_content"
+        android:layout_width="332dp"
+        android:layout_height="0dp"
         android:layout_columnSpan="2"
         android:layout_columnWeight="1"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="29dp"
+        android:layout_marginBottom="9dp"
         android:gravity="top"
         android:textSize="20sp"
-        android:hint="Mensagem" />
+        app:layout_constraintBottom_toTopOf="@+id/text_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+    <TextView
         android:id="@+id/text_phone"
-        android:layout_height="wrap_content"
+        android:layout_width="210dp"
+        android:layout_height="37dp"
         android:layout_columnWeight="1"
-        android:hint="Telefone"
-        android:inputType="phone" />
+        android:layout_marginBottom="311dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_message" />
 
     <Button
-        android:id="@+id/button_send"
-        android:layout_height="wrap_content"
-        android:text="Enviar" />
+        android:id="@+id/buttonSend"
+        android:layout_width="79dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="112dp"
+        android:background="@drawable/light_blue_rectangle_button"
+        android:drawableBottom="@drawable/ic_send_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.665"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button_back"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_columnWeight="1"
-        android:columnCount="3"
-        android:rowCount="3"
-        android:text="Back" />
+        android:id="@+id/buttonBack"
+        android:layout_width="79dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="112dp"
+        android:background="@drawable/light_blue_rectangle_button"
+        android:drawableBottom="@drawable/ic_keyboard_backspace_black_24dp"
+        android:textAllCaps="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.319"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</GridLayout>
+
+</android.support.constraint.ConstraintLayout>

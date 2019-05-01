@@ -1,11 +1,6 @@
 package br.pro.hashi.ensino.desagil.projeto1;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
@@ -18,19 +13,12 @@ public class SelecaoMensagem extends AppCompatActivity {
     private static String name;
     private static LinkedList<String> list = new LinkedList<>();
     private LinkedList<TextView> views = new LinkedList<>();
-    private static final int REQUEST_SEND_SMS = 0;
 
     private void startMessageType() {
 
         Intent intent = new Intent(this, MessageType.class);
 
 
-        startActivity(intent);
-    }
-
-    private void startSMSActivity() {
-
-        Intent intent = new Intent(this, SMSActivity.class);
         startActivity(intent);
     }
 
@@ -41,6 +29,7 @@ public class SelecaoMensagem extends AppCompatActivity {
         setContentView(R.layout.activity_selecao_mensagem);
 
         Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
+        Intent contatosActivity = new Intent(this, ContatosActivity.class);
 
 
         TextView textList1 = findViewById(R.id.text_list1);
@@ -112,21 +101,10 @@ public class SelecaoMensagem extends AppCompatActivity {
 
         buttonChoice.setOnClickListener((view) -> {
             if(list.size() > 0 ){
-                setName();
-
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-
-                    startSMSActivity();
-                } else {
-
-                    String[] permissions = new String[]{
-                            Manifest.permission.SEND_SMS,
-                    };
-
-                    ActivityCompat.requestPermissions(this, permissions, REQUEST_SEND_SMS);
-                }
+                setMessage();
+                contatosActivity.putExtra("contatosActivityIntent", "messageSendSelection");
+                startActivity(contatosActivity);
             }
-
 
         });
 
@@ -142,9 +120,9 @@ public class SelecaoMensagem extends AppCompatActivity {
 
     }
 
-    public void setName() { this.name = list.get(at); }
+    public void setMessage() { this.name = list.get(at); }
 
-    public String getName() { return name; }
+    public String getMessage() { return name; }
 
     public LinkedList<String> getList() { return list; }
 
@@ -164,14 +142,5 @@ public class SelecaoMensagem extends AppCompatActivity {
             }
         }
 
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-
-        if (requestCode == REQUEST_SEND_SMS && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-            startSMSActivity();
-
-        }
     }
 }
