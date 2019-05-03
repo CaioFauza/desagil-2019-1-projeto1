@@ -145,16 +145,24 @@ public class ContatosActivity extends AppCompatActivity {
 
             choiceButton.setOnClickListener((view) -> {
 
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                    startSMSActivity(value);
+                if (contatos.size() != 0){
 
-                } else {
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
+                        startSMSActivity(value);
 
-                    String[] permissions = new String[]{
-                            Manifest.permission.SEND_SMS,
-                    };
+                    } else {
 
-                    ActivityCompat.requestPermissions(this, permissions, REQUEST_SEND_SMS);
+                        String[] permissions = new String[]{
+                                Manifest.permission.SEND_SMS,
+                        };
+
+                        ActivityCompat.requestPermissions(this, permissions, REQUEST_SEND_SMS);
+                    }
+
+                }
+
+                else{
+                    //popup
                 }
 
             });
