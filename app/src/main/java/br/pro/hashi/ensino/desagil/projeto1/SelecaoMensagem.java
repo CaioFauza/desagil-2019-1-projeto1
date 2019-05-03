@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
@@ -13,6 +14,11 @@ public class SelecaoMensagem extends AppCompatActivity {
     private static String name;
     private static LinkedList<String> list = new LinkedList<>();
     private LinkedList<TextView> views = new LinkedList<>();
+
+    private void showToast(String text){
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     private void startMessageType() {
 
@@ -115,6 +121,7 @@ public class SelecaoMensagem extends AppCompatActivity {
             else{
                 this.list.remove(list.get(at));
                 updateList();
+                showToast("Mensagem removida com sucesso!");
             }
         });
 
