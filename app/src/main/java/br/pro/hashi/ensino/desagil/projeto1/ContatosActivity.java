@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import java.util.Collections;
@@ -26,6 +27,10 @@ public class ContatosActivity extends AppCompatActivity {
     private LinkedList<String> keys;
     private static final int REQUEST_SEND_SMS = 0;
 
+    private void showToast(String text){
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+        toast.show();
+    }
     private void startMainActivity() {
 
         Intent intent = new Intent(this, MainActivity.class);
@@ -118,6 +123,7 @@ public class ContatosActivity extends AppCompatActivity {
                 else{
                     this.contatos.remove(keys.get(at));
                     updateList();
+                    showToast("Contato removido com sucesso!");
                 }
             });
 

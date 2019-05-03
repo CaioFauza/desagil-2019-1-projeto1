@@ -31,6 +31,10 @@ public class MorseTranslate extends AppCompatActivity {
     private LinkedList<String> morse;
     private LinkedList<String> alfaNum;
 
+    private void showToast(String text){
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +89,7 @@ public class MorseTranslate extends AppCompatActivity {
                     morseTranslateIntent.putExtra("morseTranslateActivity", "contactName");
                     startActivity(morseTranslateIntent);
                 }else{
-                    //Mostra que string está vazia
+                    showToast("Nome inválido!");
                 }
             });
 
@@ -108,11 +112,12 @@ public class MorseTranslate extends AppCompatActivity {
                         contactActivityIntent.putExtra("contatosActivityIntent", "mainPage");
                         startActivity(contactActivityIntent);
                         addOnContactList();
+                        showToast("Número adicionado com sucesso!");
                     }else{
-                        //Mostra que número é inválido
+                        showToast("Número inválido!");
                     }
                 }else{
-                    //Mostra que string está vazia
+                    showToast("Número inválido!");
                 }
             });
 
@@ -133,8 +138,9 @@ public class MorseTranslate extends AppCompatActivity {
                 if(stringTranslated.length() > 0) {
                     mesageList.getList().add(stringTranslated);
                     startActivity(selecaoActivityIntent);
+                    showToast("Mensagem adicionada com sucesso!");
                 }else{
-                    //Mostra que string está vazia
+                    showToast("Mensagem inválida!");
             }
             });
 
@@ -153,7 +159,7 @@ public class MorseTranslate extends AppCompatActivity {
                     contactActivityIntent.putExtra("contatosActivityIntent", "messageSendType");
                     startActivity(contactActivityIntent);
                 }else{
-                    //Mostra que string está vazia
+                    showToast("Mensagem inválida!");
                 }
             });
 
