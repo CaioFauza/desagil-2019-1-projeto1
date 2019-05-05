@@ -143,5 +143,15 @@ Pressionar -"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/buttonDict"
+        android:layout_width="95dp"
+        android:layout_height="38dp"
+        android:background="@drawable/dark_green_rectangle_button"
+        android:text="Dicionário"
+        android:textAllCaps="false"
+        tools:layout_editor_absoluteX="289dp"
+        tools:layout_editor_absoluteY="45dp" />
+
 
 </android.support.constraint.ConstraintLayout>

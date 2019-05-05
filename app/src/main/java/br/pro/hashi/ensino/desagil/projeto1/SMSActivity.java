@@ -21,6 +21,10 @@ public class SMSActivity extends AppCompatActivity {
     MorseTranslate newMessage = new MorseTranslate();
     ContatosActivity contactNumber = new ContatosActivity();
 
+    private void showToast(String text){
+        Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
+        toast.show();
+    }
 
     private void startMainActivity() {
 
@@ -99,6 +103,7 @@ public class SMSActivity extends AppCompatActivity {
                 textExample.setText("");
                 textPhone.setText("");
                 startMainActivity();
+                showToast("Mensagem enviada com sucesso!");
 
             });
 
