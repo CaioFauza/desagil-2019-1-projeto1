@@ -1,7 +1,9 @@
 package br.pro.hashi.ensino.desagil.projeto1;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -65,6 +67,7 @@ public class MorseTranslate extends AppCompatActivity {
         TextView numberText = findViewById(R.id.numberText);
         TextView newMessageText = findViewById(R.id.newMessageText);
         Button finishButton = findViewById(R.id.buttonFinish);
+        Button buttonDict = findViewById(R.id.buttonDict);
 
         morse = translator.getCodes();
         for(String code: morse){
@@ -73,12 +76,25 @@ public class MorseTranslate extends AppCompatActivity {
         Collections.sort(alfaNum);
 
         for (int i = 0; i < alfaNum.size(); i++) {
-            alfaNum.set(i, alfaNum.get(i) + " : " + translator.charToMorse((alfaNum.get(i)).charAt(0)));
+            alfaNum.set(i, alfaNum.get(i) + " : " + translator.charToMorse((alfaNum.get(i)).charAt(0)) + "\n");
         }
         for (int i = 0; i < morse.size(); i++) {
-            morse.set(i, morse.get(i) + " : " + translator.morseToChar((morse.get(i))));
+            morse.set(i, morse.get(i) + " : " + translator.morseToChar((morse.get(i)))+ "\n");
         }
 
+        buttonDict.setOnClickListener((view) -> {
+            String dict = ("Romano para morse: \n " + alfaNum.toString() + "\n \n \n Morse para romano: \n" + morse.toString());
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            String dict1 = dict.replace(",", "");
+            String dict2 = dict1.replace("[", "");
+
+
+            builder.setMessage(dict2.replace("]",""));
+            builder.setTitle("Dicionário");
+            builder.setPositiveButton("Ok", (dialog, id) -> dialog.dismiss());
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        });
 
         if(prevActivity.equals("contactList") || prevActivity.equals("contactNumber")){
             nameText.setVisibility(View.VISIBLE);
