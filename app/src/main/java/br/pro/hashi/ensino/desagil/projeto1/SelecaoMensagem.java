@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.LinkedList;
 
 public class SelecaoMensagem extends AppCompatActivity {
@@ -36,6 +39,10 @@ public class SelecaoMensagem extends AppCompatActivity {
 
         Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
         Intent contatosActivity = new Intent(this, ContatosActivity.class);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        DatabaseReference referenceMensagens = database.getReference("mensagensProntas");
 
 
         TextView textList1 = findViewById(R.id.text_list1);
