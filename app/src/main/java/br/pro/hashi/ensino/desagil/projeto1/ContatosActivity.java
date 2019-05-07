@@ -184,7 +184,9 @@ public class ContatosActivity extends AppCompatActivity {
             value = "newMessages";
 
             choiceButton.setOnClickListener((view) -> {
-                startSMSActivity(value);
+                if (contatos.size() != 0) {
+                    startSMSActivity(value);
+                }
 
             });
 
