@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "137119999079",
+    "firebase_url": "https://desagil-2019-1-projeto1-grupo3.firebaseio.com",
+    "project_id": "desagil-2019-1-projeto1-grupo3",
+    "storage_bucket": "desagil-2019-1-projeto1-grupo3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137119999079:android:9d55fd8b543206e9",
+        "android_client_info": {
+          "package_name": "br.pro.hashi.ensino.desagil.projeto1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137119999079-2cn18392ke0r1orf6moouk2ao9rs6nls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.pro.hashi.ensino.desagil.projeto1",
+            "certificate_hash": "6821279072c2a8835e327d293dd3852307c05ac3"
+          }
+        },
+        {
+          "client_id": "137119999079-a6cr784nnqtuge1rtmlbgnt6btgu9i4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNOCYhltjUuhnTChizUn3Lq4J1kjM9Wzk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137119999079-a6cr784nnqtuge1rtmlbgnt6btgu9i4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

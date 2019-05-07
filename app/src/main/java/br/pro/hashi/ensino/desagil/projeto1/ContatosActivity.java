@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -55,6 +58,10 @@ public class ContatosActivity extends AppCompatActivity {
         Intent morseTranslateIntent = new Intent(this, MorseTranslate.class);
         Intent selecaoMensagemIntent = new Intent(this, SelecaoMensagem.class);
 
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+        DatabaseReference referenceContatos = database.getReference("contatos");
+
 
         Intent contatosActivityIntent = getIntent();
         String prevActivity = contatosActivityIntent.getStringExtra("contatosActivityIntent");
@@ -81,6 +88,8 @@ public class ContatosActivity extends AppCompatActivity {
         views.add(textList7);
         TextView textList8 = findViewById(R.id.text_list8);
         views.add(textList8);
+
+        System.out.println(referenceContatos.getDatabase());
 
 
 
@@ -168,7 +177,6 @@ public class ContatosActivity extends AppCompatActivity {
                 }
 
                 else{
-                    //popup
                 }
 
             });
