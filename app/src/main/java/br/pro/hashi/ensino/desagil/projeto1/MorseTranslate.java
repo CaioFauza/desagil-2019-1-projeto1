@@ -40,7 +40,6 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
     private HashMap<String, String> map;
     private LinkedList<String> morse;
     private LinkedList<String> alfaNum;
-    private int messageListSize;
 
     private void showToast(String text){
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
@@ -271,9 +270,9 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
     @Override
     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
         try {
-            this.messageListSize = (int) dataSnapshot.getChildrenCount();
+
         } catch (DatabaseException exception) {
-            ;
+
         }
 
     }
