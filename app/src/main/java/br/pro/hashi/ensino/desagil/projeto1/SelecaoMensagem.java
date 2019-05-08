@@ -27,6 +27,8 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
     private LinkedList<TextView> views = new LinkedList<>();
     private static HashMap<String, String> map = new HashMap<>();
 
+
+
     private void showToast(String text){
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
@@ -137,6 +139,7 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
                 updateList();
             }
             else{
+                referenceMensagens.child(list.get(at)).removeValue();
                 this.list.remove(list.get(at));
                 updateList();
                 showToast("Mensagem removida com sucesso!");
@@ -152,8 +155,8 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
     public LinkedList<String> getList() { return list; }
 
     private void updateList(){
+        list = new LinkedList<>();
         for (HashMap.Entry<String, String> entry : map.entrySet()) {
-            list = new LinkedList<>();
             list.add(entry.getValue());
         }
         Collections.sort(list);
@@ -187,6 +190,7 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
             // esse método vai lançar uma DatabaseException.
             this.map = (HashMap<String, String>) dataSnapshot.getValue();
             lista = "Lista vazia";
+
             updateList();
             //this.contatos = map;
         } catch (DatabaseException exception) {
