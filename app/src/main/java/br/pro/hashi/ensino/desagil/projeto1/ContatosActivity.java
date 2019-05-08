@@ -14,15 +14,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
-public class ContatosActivity extends AppCompatActivity {
+public class ContatosActivity extends AppCompatActivity implements ValueEventListener {
     private int at = 0;
+    private String lista = "Aguardando Firebase";
     public static String contacts;
     public String value;
     public static HashMap<String, String> contatos = new HashMap<>();
@@ -62,9 +68,13 @@ public class ContatosActivity extends AppCompatActivity {
 
         DatabaseReference referenceContatos = database.getReference("contatos");
 
+        referenceContatos.addValueEventListener(this);
+
 
         Intent contatosActivityIntent = getIntent();
         String prevActivity = contatosActivityIntent.getStringExtra("contatosActivityIntent");
+
+        //contatos = referenceContatos;
 
 
         keys = new LinkedList<>(contatos.keySet());
@@ -101,7 +111,7 @@ public class ContatosActivity extends AppCompatActivity {
         Button choiceButton = findViewById(R.id.button_choice);
 
         if(contatos.size() == 0){
-            views.get(0).setText("Lista Vazia");
+            views.get(0).setText(lista);
         }else{
             if(contatos.size() > views.size()){
                 for (int i = 0; i < views.size(); i++) {
@@ -222,6 +232,8 @@ public class ContatosActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     public void setNumber(String contacts) { this.contacts =  contacts; }
@@ -260,5 +272,30 @@ public class ContatosActivity extends AppCompatActivity {
             startSMSActivity(value);
 
         }
+    }
+
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        try {
+
+            // O método getValue recebe como parâmetro uma
+            // classe Java que representa o tipo de dado
+            // que você acredita estar lá. Se você errar,
+            // esse método vai lançar uma DatabaseException.
+            this.contatos = (HashMap<String, String>) dataSnapshot.getValue();
+            lista = "Lista vazia";
+            updateList();
+            //this.contatos = map;
+        } catch (DatabaseException exception) {
+            lista = "Firebase fora do ar";
+        }
+
+    }
+
+    // Este método é chamado caso ocorra algum problema
+    // com a conexão ao banco de dados do Firebase.
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
     }
 }
