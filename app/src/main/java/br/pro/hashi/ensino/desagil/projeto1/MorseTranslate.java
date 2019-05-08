@@ -3,6 +3,7 @@ package br.pro.hashi.ensino.desagil.projeto1;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,12 +15,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseException;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
 
-public class MorseTranslate extends AppCompatActivity {
+public class MorseTranslate extends AppCompatActivity implements ValueEventListener {
 
     private String stringTranslated = "";
     private String preTranslated = "";
@@ -32,6 +40,7 @@ public class MorseTranslate extends AppCompatActivity {
     private HashMap<String, String> map;
     private LinkedList<String> morse;
     private LinkedList<String> alfaNum;
+    private int messageListSize;
 
     private void showToast(String text){
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
@@ -50,6 +59,10 @@ public class MorseTranslate extends AppCompatActivity {
         Intent selecaoActivityIntent = new Intent(this, SelecaoMensagem.class);
         Intent messageTypeActivityIntent = new Intent(this, MessageType.class);
         Intent SMSActivity = new Intent(this, SMSActivity.class);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference referenceMensagens = database.getReference("mensagensProntas");
+        referenceMensagens.addValueEventListener(this);
 
 
         morse = new LinkedList<>();
@@ -152,7 +165,7 @@ public class MorseTranslate extends AppCompatActivity {
             finishButton.setOnClickListener((view) -> {
                 // Se a string não estiver vazia
                 if(stringTranslated.length() > 0) {
-                    mesageList.getList().add(stringTranslated);
+                    referenceMensagens.child(stringTranslated).setValue(stringTranslated);
                     startActivity(selecaoActivityIntent);
                     showToast("Mensagem adicionada com sucesso!");
                 }else{
@@ -254,5 +267,22 @@ public class MorseTranslate extends AppCompatActivity {
 
 
     public void addOnContactList(){ c.contatos.put(nameContact, numberContact); }
+
+    @Override
+    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+        try {
+            this.messageListSize = (int) dataSnapshot.getChildrenCount();
+        } catch (DatabaseException exception) {
+            ;
+        }
+
+    }
+
+    // Este método é chamado caso ocorra algum problema
+    // com a conexão ao banco de dados do Firebase.
+    @Override
+    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+    }
 
 }
