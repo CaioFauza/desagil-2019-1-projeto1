@@ -1,9 +1,9 @@
 package br.pro.hashi.ensino.desagil.projeto1;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,16 +20,14 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class SelecaoMensagem extends AppCompatActivity implements ValueEventListener {
-    private int at = 0;
     private static String name;
-    private String lista = "Aguardando Firebase";
     private static LinkedList<String> list = new LinkedList<>();
-    private LinkedList<TextView> views = new LinkedList<>();
     private static HashMap<String, String> map = new HashMap<>();
+    private final LinkedList<TextView> views = new LinkedList<>();
+    private int at = 0;
+    private String lista = "Aguardando Firebase";
 
-
-
-    private void showToast(String text){
+    private void showToast(String text) {
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
     }
@@ -84,22 +82,22 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
         Button buttonAdd = findViewById(R.id.button_add);
         Button buttonDel = findViewById(R.id.button_del);
 
-        if(list.size() == 0){
+        if (list.size() == 0) {
             views.get(0).setText(lista);
-        }else{
-            if(list.size() > views.size()){
+        } else {
+            if (list.size() > views.size()) {
                 for (int i = 0; i < views.size(); i++) {
                     views.get(i).setText(list.get(i));
                 }
-            }else{
-                for (int i = 0; i < list.size(); i++){
+            } else {
+                for (int i = 0; i < list.size(); i++) {
                     views.get(i).setText(list.get(i));
                 }
 
             }
         }
         buttonUp.setOnClickListener((view) -> {
-            if(at < list.size()-1){
+            if (at < list.size() - 1) {
                 at += 1;
                 updateList();
             }
@@ -107,15 +105,13 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
         });
 
         buttonDown.setOnClickListener((view) -> {
-            if(at > 0){
+            if (at > 0) {
                 at -= 1;
                 updateList();
             }
         });
 
-        buttonBack.setOnClickListener((view) -> {
-            startMessageType();
-        });
+        buttonBack.setOnClickListener((view) -> startMessageType());
 
         buttonAdd.setOnClickListener((view) -> {
 
@@ -126,7 +122,7 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
         });
 
         buttonChoice.setOnClickListener((view) -> {
-            if(list.size() > 0 ){
+            if (list.size() > 0) {
                 setMessage();
                 contatosActivity.putExtra("contatosActivityIntent", "messageSendSelection");
                 startActivity(contatosActivity);
@@ -135,12 +131,14 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
         });
 
         buttonDel.setOnClickListener((view) -> {
-            if(list.size() == 0){
+            if (list.size() == 1) {
                 updateList();
-            }
-            else{
+                showToast("Uma mensagem é necessária!");
+            } else {
                 referenceMensagens.child(list.get(at)).removeValue();
-                this.list.remove(list.get(at));
+                if (at > 0) {
+                    at -= 1;
+                }
                 updateList();
                 showToast("Mensagem removida com sucesso!");
             }
@@ -148,29 +146,31 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
 
     }
 
-    public void setMessage() { this.name = list.get(at); }
+    private void setMessage() {
+        name = list.get(at);
+    }
 
-    public String getMessage() { return name; }
+    public String getMessage() {
+        return name;
+    }
 
-    public LinkedList<String> getList() { return list; }
-
-    private void updateList(){
+    private void updateList() {
         list = new LinkedList<>();
         for (HashMap.Entry<String, String> entry : map.entrySet()) {
             list.add(entry.getValue());
         }
         Collections.sort(list);
-        if(list.size() == 0){
+        if (list.size() == 0) {
             views.get(0).setText("Lista Vazia");
-        }else if(list.size() - at > views.size()){
-            for (int i = 0; i < views.size(); i++){
+        } else if (list.size() - at > views.size()) {
+            for (int i = 0; i < views.size(); i++) {
                 views.get(i).setText(list.get(i + at));
             }
-        }else{
-            for (int i = 0; i < list.size() - at; i++){
+        } else {
+            for (int i = 0; i < list.size() - at; i++) {
                 views.get(i).setText(list.get(i + at));
             }
-            for (int i = list.size() - at; i < views.size(); i++){
+            for (int i = list.size() - at; i < views.size(); i++) {
                 views.get(i).setText("");
             }
         }
@@ -188,7 +188,7 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
             // classe Java que representa o tipo de dado
             // que você acredita estar lá. Se você errar,
             // esse método vai lançar uma DatabaseException.
-            this.map = (HashMap<String, String>) dataSnapshot.getValue();
+            map = (HashMap<String, String>) dataSnapshot.getValue();
             lista = "Lista vazia";
 
             updateList();

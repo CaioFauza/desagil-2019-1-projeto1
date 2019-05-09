@@ -3,16 +3,15 @@ package br.pro.hashi.ensino.desagil.projeto1;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -24,22 +23,22 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
 
 public class ContatosActivity extends AppCompatActivity implements ValueEventListener {
+    private static final int REQUEST_SEND_SMS = 0;
+    private static String contacts;
+    private static HashMap<String, String> contatos = new HashMap<>();
+    private final LinkedList<TextView> views = new LinkedList<>();
     private int at = 0;
     private String lista = "Aguardando Firebase";
-    public static String contacts;
-    public String value;
-    public static HashMap<String, String> contatos = new HashMap<>();
-    private LinkedList<TextView> views = new LinkedList<>();
+    private String value;
     private LinkedList<String> keys;
-    private static final int REQUEST_SEND_SMS = 0;
 
-    private void showToast(String text){
+    private void showToast(String text) {
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
     }
+
     private void startMainActivity() {
 
         Intent intent = new Intent(this, MainActivity.class);
@@ -52,7 +51,6 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
         SMSActivity.putExtra("SMSActivity", value);
         startActivity(SMSActivity);
     }
-
 
 
     @Override
@@ -73,8 +71,6 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
 
         Intent contatosActivityIntent = getIntent();
         String prevActivity = contatosActivityIntent.getStringExtra("contatosActivityIntent");
-
-        //contatos = referenceContatos;
 
 
         keys = new LinkedList<>(contatos.keySet());
@@ -99,9 +95,6 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
         TextView textList8 = findViewById(R.id.text_list8);
         views.add(textList8);
 
-        System.out.println(referenceContatos.getDatabase());
-
-
 
         Button buttonDel = findViewById(R.id.button_del);
         Button buttonBack = findViewById(R.id.button_back);
@@ -110,16 +103,16 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
         Button addContactButton = findViewById(R.id.buttonAddContact);
         Button choiceButton = findViewById(R.id.button_choice);
 
-        if(contatos.size() == 0){
+        if (contatos.size() == 0) {
             views.get(0).setText(lista);
-        }else{
-            if(contatos.size() > views.size()){
+        } else {
+            if (contatos.size() > views.size()) {
                 for (int i = 0; i < views.size(); i++) {
-                    views.get(i).setText(keys.get(i)+ ": " + contatos.get(keys.get(i)));
+                    views.get(i).setText(keys.get(i) + ": " + contatos.get(keys.get(i)));
                 }
-            }else{
-                for (int i = 0; i < contatos.size(); i++){
-                    views.get(i).setText(keys.get(i)+ ": " + contatos.get(keys.get(i)));
+            } else {
+                for (int i = 0; i < contatos.size(); i++) {
+                    views.get(i).setText(keys.get(i) + ": " + contatos.get(keys.get(i)));
                 }
 
             }
@@ -130,25 +123,26 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
         ///////mainpage
 
 
-        if(prevActivity.equals("mainPage")){
+        if (prevActivity.equals("mainPage")) {
 
             addContactButton.setVisibility(View.VISIBLE);
             buttonDel.setVisibility(View.VISIBLE);
 
             buttonDel.setOnClickListener((view) -> {
-                if(contatos.size() == 0){
+                if (contatos.size() == 1) {
                     updateList();
-                }
-                else{
-                    this.contatos.remove(keys.get(at));
+                    showToast("Um contato é necessário!");
+                } else {
+                    referenceContatos.child(keys.get(at)).removeValue();
+                    if (at > 0) {
+                        at -= 1;
+                    }
                     updateList();
                     showToast("Contato removido com sucesso!");
                 }
             });
 
-            buttonBack.setOnClickListener((view) -> {
-                startMainActivity();
-            });
+            buttonBack.setOnClickListener((view) -> startMainActivity());
 
 
             addContactButton.setOnClickListener((view) -> {
@@ -163,14 +157,14 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
 
         //////messagesend
 
-        if(prevActivity.equals("messageSendSelection")){
+        if (prevActivity.equals("messageSendSelection")) {
             choiceButton.setVisibility(View.VISIBLE);
             value = "selectMessages";
 
 
             choiceButton.setOnClickListener((view) -> {
 
-                if (contatos.size() != 0){
+                if (contatos.size() != 0) {
 
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
                         startSMSActivity(value);
@@ -184,20 +178,17 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
                         ActivityCompat.requestPermissions(this, permissions, REQUEST_SEND_SMS);
                     }
 
-                }
-
-                else{
+                } else {
+                    showToast("Lista de contatos vazia!");
                 }
 
             });
 
-            buttonBack.setOnClickListener((view) -> {
-                startActivity(selecaoMensagemIntent);
-            });
+            buttonBack.setOnClickListener((view) -> startActivity(selecaoMensagemIntent));
 
         }
 
-        if(prevActivity.equals("messageSendType")){
+        if (prevActivity.equals("messageSendType")) {
             choiceButton.setVisibility(View.VISIBLE);
             value = "newMessages";
 
@@ -218,7 +209,7 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
         /////general
 
         buttonUp.setOnClickListener((view) -> {
-            if(at < contatos.size()-1){
+            if (at < contatos.size() - 1) {
                 at += 1;
                 updateList();
             }
@@ -226,39 +217,42 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
         });
 
         buttonDown.setOnClickListener((view) -> {
-            if(at > 0){
+            if (at > 0) {
                 at -= 1;
                 updateList();
             }
         });
 
 
-
     }
 
-    public void setNumber(String contacts) { this.contacts =  contacts; }
+    public String getNumber() {
+        return contacts;
+    }
 
-    public String getNumber() { return contacts; }
+    private void setNumber(String contacts) {
+        ContatosActivity.contacts = contacts;
+    }
 
-    private void updateList(){
+    private void updateList() {
         keys = new LinkedList<>(contatos.keySet());
         Collections.sort(keys);
 
-        if(contatos.size() == 0) {
+        if (contatos.size() == 0) {
             views.get(0).setText("Lista Vazia");
-        }else if(contatos.size() - at > views.size()){
-            for (int i = 0; i < views.size(); i++){
-                views.get(i).setText(keys.get(i + at)+ ": " + contatos.get(keys.get(i + at)));
+        } else if (contatos.size() - at > views.size()) {
+            for (int i = 0; i < views.size(); i++) {
+                views.get(i).setText(keys.get(i + at) + ": " + contatos.get(keys.get(i + at)));
             }
 
 
-        }else{
-            for (int i = 0; i < contatos.size() - at; i++){
-                views.get(i).setText(keys.get(i + at)+ ": " + contatos.get(keys.get(i + at)));
+        } else {
+            for (int i = 0; i < contatos.size() - at; i++) {
+                views.get(i).setText(keys.get(i + at) + ": " + contatos.get(keys.get(i + at)));
             }
             setNumber(contatos.get(keys.get(at)));
 
-            for (int i = contatos.size() - at; i < views.size(); i++){
+            for (int i = contatos.size() - at; i < views.size(); i++) {
                 views.get(i).setText("");
             }
         }
@@ -282,7 +276,7 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
             // classe Java que representa o tipo de dado
             // que você acredita estar lá. Se você errar,
             // esse método vai lançar uma DatabaseException.
-            this.contatos = (HashMap<String, String>) dataSnapshot.getValue();
+            contatos = (HashMap<String, String>) dataSnapshot.getValue();
             lista = "Lista vazia";
             updateList();
             //this.contatos = map;

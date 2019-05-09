@@ -1,27 +1,20 @@
 package br.pro.hashi.ensino.desagil.projeto1;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.PhoneNumberUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.telephony.SmsManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import br.pro.hashi.ensino.desagil.projeto1.ContatosActivity;
-import br.pro.hashi.ensino.desagil.projeto1.MainActivity;
-import br.pro.hashi.ensino.desagil.projeto1.R;
-import br.pro.hashi.ensino.desagil.projeto1.SelecaoMensagem;
-
 public class SMSActivity extends AppCompatActivity {
 
-    SelecaoMensagem preDefined = new SelecaoMensagem();
-    MorseTranslate newMessage = new MorseTranslate();
-    ContatosActivity contactNumber = new ContatosActivity();
+    private final SelecaoMensagem preDefined = new SelecaoMensagem();
+    private final MorseTranslate newMessage = new MorseTranslate();
+    private final ContatosActivity contactNumber = new ContatosActivity();
 
-    private void showToast(String text){
+    private void showToast(String text) {
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
     }
@@ -53,7 +46,7 @@ public class SMSActivity extends AppCompatActivity {
 
         ////////selection
 
-        if(prevActivity.equals("selectMessages")){
+        if (prevActivity.equals("selectMessages")) {
 
 
             textExample.setText(preDefined.getMessage());
@@ -74,6 +67,7 @@ public class SMSActivity extends AppCompatActivity {
                 textExample.setText("");
                 textPhone.setText("");
                 startMainActivity();
+                showToast("Mensagem enviada com sucesso!");
 
             });
 
@@ -81,7 +75,7 @@ public class SMSActivity extends AppCompatActivity {
 
         ////////selection
 
-        if(prevActivity.equals("newMessages")){
+        if (prevActivity.equals("newMessages")) {
 
             System.out.println(contactNumber.getNumber());
 

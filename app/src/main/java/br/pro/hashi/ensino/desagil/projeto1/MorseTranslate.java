@@ -1,47 +1,35 @@
 package br.pro.hashi.ensino.desagil.projeto1;
 
 
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-
-
-import android.telephony.PhoneNumberUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 
-public class MorseTranslate extends AppCompatActivity implements ValueEventListener {
+public class MorseTranslate extends AppCompatActivity {
 
-    private String stringTranslated = "";
-    private String preTranslated = "";
-    private String wordTranslated;
     private static String nameContact;
     private static String numberContact;
     private static String newMessage;
-    public boolean word;
-    ContatosActivity c = new ContatosActivity();
-    private HashMap<String, String> map;
+    private String stringTranslated = "";
+    private String preTranslated = "";
+    private String wordTranslated;
+    private boolean word;
     private LinkedList<String> morse;
     private LinkedList<String> alfaNum;
 
-    private void showToast(String text){
+    private void showToast(String text) {
         Toast toast = Toast.makeText(this, text, Toast.LENGTH_SHORT);
         toast.show();
     }
@@ -57,16 +45,15 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
         Intent contactActivityIntent = new Intent(this, ContatosActivity.class);
         Intent selecaoActivityIntent = new Intent(this, SelecaoMensagem.class);
         Intent messageTypeActivityIntent = new Intent(this, MessageType.class);
-        Intent SMSActivity = new Intent(this, SMSActivity.class);
+
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference referenceMensagens = database.getReference("mensagensProntas");
-        referenceMensagens.addValueEventListener(this);
+        DatabaseReference referenceContatos = database.getReference("contatos");
 
 
         morse = new LinkedList<>();
         alfaNum = new LinkedList<>();
-
 
 
         Button buttonMorse = findViewById(R.id.buttonMorse);
@@ -82,7 +69,7 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
         Button buttonDict = findViewById(R.id.buttonDict);
 
         morse = translator.getCodes();
-        for(String code: morse){
+        for (String code : morse) {
             alfaNum.add(Character.toString(translator.morseToChar(code)));
         }
         Collections.sort(alfaNum);
@@ -91,7 +78,7 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
             alfaNum.set(i, alfaNum.get(i) + " : " + translator.charToMorse((alfaNum.get(i)).charAt(0)) + "\n");
         }
         for (int i = 0; i < morse.size(); i++) {
-            morse.set(i, morse.get(i) + " : " + translator.morseToChar((morse.get(i)))+ "\n");
+            morse.set(i, morse.get(i) + " : " + translator.morseToChar((morse.get(i))) + "\n");
         }
 
         buttonDict.setOnClickListener((view) -> {
@@ -101,22 +88,22 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
             String dict2 = dict1.replace("[", "");
 
 
-            builder.setMessage(dict2.replace("]",""));
+            builder.setMessage(dict2.replace("]", ""));
             builder.setTitle("Dicionário");
             builder.setPositiveButton("Ok", (dialog, id) -> dialog.dismiss());
             AlertDialog dialog = builder.create();
             dialog.show();
         });
 
-        if(prevActivity.equals("contactList") || prevActivity.equals("contactNumber")){
+        if (prevActivity.equals("contactList") || prevActivity.equals("contactNumber")) {
             nameText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
                 // Se a string não estiver vazia
-                if(stringTranslated.length() > 0) {
-                    this.nameContact = stringTranslated;
+                if (stringTranslated.length() > 0) {
+                    nameContact = stringTranslated;
                     morseTranslateIntent.putExtra("morseTranslateActivity", "contactName");
                     startActivity(morseTranslateIntent);
-                }else{
+                } else {
                     showToast("Nome inválido!");
                 }
             });
@@ -129,22 +116,22 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
 
         }
 
-        if(prevActivity.equals("contactName")){
+        if (prevActivity.equals("contactName")) {
             numberText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
                 // Se a string não estiver vazia
-                if(stringTranslated.length() > 0) {
+                if (stringTranslated.length() > 0) {
                     // Checa se e a string só tem números e é do tamanho certo
                     if (stringTranslated.matches("[0-9]+") && stringTranslated.length() >= 2 && stringTranslated.length() <= 12) {
-                        this.numberContact = stringTranslated;
+                        numberContact = stringTranslated;
                         contactActivityIntent.putExtra("contatosActivityIntent", "mainPage");
+                        referenceContatos.child(nameContact).setValue(numberContact);
                         startActivity(contactActivityIntent);
-                        addOnContactList();
                         showToast("Número adicionado com sucesso!");
-                    }else{
+                    } else {
                         showToast("Número inválido!");
                     }
-                }else{
+                } else {
                     showToast("Número inválido!");
                 }
             });
@@ -157,47 +144,39 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
 
         }
 
-        if(prevActivity.equals("buttonAdd")){
-            SelecaoMensagem mesageList = new SelecaoMensagem();
+        if (prevActivity.equals("buttonAdd")) {
 
             newMessageText.setVisibility(View.VISIBLE);
             finishButton.setOnClickListener((view) -> {
                 // Se a string não estiver vazia
-                if(stringTranslated.length() > 0) {
+                if (stringTranslated.length() > 0) {
                     referenceMensagens.child(stringTranslated).setValue(stringTranslated);
                     startActivity(selecaoActivityIntent);
                     showToast("Mensagem adicionada com sucesso!");
-                }else{
-                    showToast("Mensagem inválida!");
-            }
-            });
-
-            buttonBack.setOnClickListener((view) -> {
-                startActivity(selecaoActivityIntent);
-
-            });
-
-
-        }
-        if(prevActivity.equals("newMessage")){
-            finishButton.setOnClickListener((view) -> {
-                // Se a string não estiver vazia
-                if(stringTranslated.length() > 0) {
-                    setMessage();
-                    contactActivityIntent.putExtra("contatosActivityIntent", "messageSendType");
-                    startActivity(contactActivityIntent);
-                }else{
+                } else {
                     showToast("Mensagem inválida!");
                 }
             });
 
-            buttonBack.setOnClickListener((view) -> {
-                startActivity(messageTypeActivityIntent);
+            buttonBack.setOnClickListener((view) -> startActivity(selecaoActivityIntent));
 
-            });
 
         }
+        if (prevActivity.equals("newMessage")) {
+            finishButton.setOnClickListener((view) -> {
+                // Se a string não estiver vazia
+                if (stringTranslated.length() > 0) {
+                    setMessage();
+                    contactActivityIntent.putExtra("contatosActivityIntent", "messageSendType");
+                    startActivity(contactActivityIntent);
+                } else {
+                    showToast("Mensagem inválida!");
+                }
+            });
 
+            buttonBack.setOnClickListener((view) -> startActivity(messageTypeActivityIntent));
+
+        }
 
 
         buttonSet.setOnClickListener((view) -> {
@@ -206,7 +185,9 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
 
             wordTranslated = String.valueOf(translator.morseToChar(preTranslated));
 
-            if(!"!".equals(wordTranslated) && !"*".equals(wordTranslated)){ stringTranslated += wordTranslated; }
+            if (!"!".equals(wordTranslated) && !"*".equals(wordTranslated)) {
+                stringTranslated += wordTranslated;
+            }
 
             morseText.setText(stringTranslated);
             preTranslated = "";
@@ -214,10 +195,10 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
         });
 
         buttonSpace.setOnClickListener((view) -> {
-            if(preTranslated.length() == 0){
+            if (preTranslated.length() == 0) {
                 word = true;
             }
-            if(word && stringTranslated.length() != 0){
+            if (word && stringTranslated.length() != 0) {
                 stringTranslated += " ";
                 morseText.setText(stringTranslated);
             }
@@ -225,15 +206,15 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
 
         butonDel.setOnClickListener((view) -> {
 
-            if(preTranslated.length() == 0){
+            if (preTranslated.length() == 0) {
                 word = true;
             }
 
-            if(word && stringTranslated.length() != 0){
+            if (word && stringTranslated.length() != 0) {
                 stringTranslated = stringTranslated.substring(0, stringTranslated.length() - 1);
                 morseText.setText(stringTranslated);
             }
-            if(!word && preTranslated.length() != 0) {
+            if (!word && preTranslated.length() != 0) {
                 preTranslated = preTranslated.substring(0, preTranslated.length() - 1);
                 morseText.setText(stringTranslated);
                 morseText.append(preTranslated);
@@ -262,26 +243,9 @@ public class MorseTranslate extends AppCompatActivity implements ValueEventListe
         return newMessage;
     }
 
-    public void setMessage() { this.newMessage = stringTranslated; }
-
-
-    public void addOnContactList(){ c.contatos.put(nameContact, numberContact); }
-
-    @Override
-    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-        try {
-
-        } catch (DatabaseException exception) {
-
-        }
-
+    private void setMessage() {
+        newMessage = stringTranslated;
     }
 
-    // Este método é chamado caso ocorra algum problema
-    // com a conexão ao banco de dados do Firebase.
-    @Override
-    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-    }
 
 }
