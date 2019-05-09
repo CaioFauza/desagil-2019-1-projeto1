@@ -108,7 +108,7 @@ public class Translator {
         nodeW.setLeft(nodeP);
         nodeW.setRight(nodeJ);
         Node nodeB = new Node('b');
-        Node nodeX =new Node('x');
+        Node nodeX = new Node('x');
         nodeB.setParent(nodeD);
         nodeX.setParent(nodeD);
         nodeD.setLeft(nodeB);
@@ -153,7 +153,7 @@ public class Translator {
         nodeH.setLeft(node5);
         nodeH.setRight(node4);
         Node node5blank = new Node('!');
-        Node node3 = new Node ('3');
+        Node node3 = new Node('3');
         node5blank.setParent(nodeV);
         node3.setParent(nodeV);
         nodeV.setLeft(node5blank);
@@ -282,25 +282,25 @@ public class Translator {
     // acordo com os requisitos não-funcionais.
     public String charToMorse(char c) {
         Node nodeChild = map.get(c);
-        String morseTranslated = "";
+        StringBuilder morseTranslated = new StringBuilder();
 
-        while(nodeChild.getValue() != '*'){
+        while (nodeChild.getValue() != '*') {
             Node nodeParent = nodeChild.getParent();
-            if(nodeParent.getLeft() == nodeChild){
+            if (nodeParent.getLeft() == nodeChild) {
 
-                morseTranslated += ".";
+                morseTranslated.append(".");
                 nodeChild = nodeParent;
 
 
             } else {
-                morseTranslated += "-";
+                morseTranslated.append("-");
                 nodeChild = nodeParent;
 
             }
 
         }
 
-        return new StringBuilder(morseTranslated).reverse().toString();
+        return new StringBuilder(morseTranslated.toString()).reverse().toString();
     }
 
 
@@ -317,13 +317,13 @@ public class Translator {
             Node left = node.getLeft();
             Node right = node.getRight();
 
-            if(left != null){
+            if (left != null) {
                 queue.add(left);
             }
-            if(right != null){
+            if (right != null) {
                 queue.add(right);
             }
-            if(node.getValue() != '!' && node.getValue() != '+' && node.getValue() != '/' && node.getValue() != '=' && node.getValue() != '*'){
+            if (node.getValue() != '!' && node.getValue() != '+' && node.getValue() != '/' && node.getValue() != '=' && node.getValue() != '*') {
                 charList.add(charToMorse(node.getValue()));
             }
 
@@ -331,7 +331,7 @@ public class Translator {
             queue.remove();
 
         }
-            return charList;
+        return charList;
     }
 
 }

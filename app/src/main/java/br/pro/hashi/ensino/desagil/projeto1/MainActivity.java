@@ -2,8 +2,8 @@ package br.pro.hashi.ensino.desagil.projeto1;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private  void startMessageType() {
+    private void startMessageType() {
         Intent intent = new Intent(this, MessageType.class);
 
         startActivity(intent);
@@ -30,14 +30,8 @@ public class MainActivity extends AppCompatActivity {
 
         Button buttonSendMessage = findViewById(R.id.buttonSendMessage);
 
-        buttonContacts.setOnClickListener((view) -> {
-            startContatosActivity();
+        buttonContacts.setOnClickListener((view) -> startContatosActivity());
 
-        });
-
-        buttonSendMessage.setOnClickListener((view) -> {
-            startMessageType();
-
-        });
+        buttonSendMessage.setOnClickListener((view) -> startMessageType());
     }
 }
