@@ -98,8 +98,8 @@ public class ContatosActivity extends AppCompatActivity implements ValueEventLis
 
         Button buttonDel = findViewById(R.id.button_del);
         Button buttonBack = findViewById(R.id.button_back);
-        Button buttonUp = findViewById(R.id.button_up);
-        Button buttonDown = findViewById(R.id.button_down);
+        Button buttonUp = findViewById(R.id.button_down);
+        Button buttonDown = findViewById(R.id.button_up);
         Button addContactButton = findViewById(R.id.buttonAddContact);
         Button choiceButton = findViewById(R.id.button_choice);
 

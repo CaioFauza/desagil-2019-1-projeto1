@@ -77,8 +77,8 @@ public class SelecaoMensagem extends AppCompatActivity implements ValueEventList
 
         Button buttonChoice = findViewById(R.id.button_choice);
         Button buttonBack = findViewById(R.id.button_back);
-        Button buttonUp = findViewById(R.id.button_up);
-        Button buttonDown = findViewById(R.id.button_down);
+        Button buttonUp = findViewById(R.id.button_down);
+        Button buttonDown = findViewById(R.id.button_up);
         Button buttonAdd = findViewById(R.id.button_add);
         Button buttonDel = findViewById(R.id.button_del);
 
